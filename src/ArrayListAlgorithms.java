@@ -226,17 +226,110 @@ public class ArrayListAlgorithms
      */
     public static ArrayList<String> parseWordsAndReverse(String sentence)
     {
-        int lastI = 0;
-        ArrayList<String> yes = new ArrayList<>();
+        sentence = " "+sentence;
 
-        for (int i = 0; i<sentence.length(); i++) {
-            if (sentence.substring(i, i+1).equals(" ")) {
-                yes.add(sentence.substring(lastI, i));
-                lastI = i;
+        int lastI = sentence.length();
+        ArrayList<String> yes = new ArrayList<>();
+        for (int i = sentence.length(); i>0; i--) {
+            if (sentence.substring(i-1, i).equals(" ")) {
+                yes.add(sentence.substring(i, lastI));
+                lastI = i-1;
             }
         }
         return yes;
     }
 
+
+    /** Removes all duplicate values from an intList, leaving only the first
+     *  occurrence in the arrayList; for example, this method will modify
+     *  [1, 2, 5, 4, 2, 2, 1, 6, 4, 4, 8, 1, 7, 4, 2] --> [1, 2, 5, 4, 6, 8, 7]
+     *
+     *  DOES mutate (modify) elements in intList
+     *  PRECONDITION: intList.size() > 0
+     *
+     *  @param intList  intList of Integers
+     */
+    public static void removeDuplicates(ArrayList<Integer> intList)
+    {
+        ArrayList<Integer> newLst = new ArrayList<>();
+        for (int i = 0; i<intList.size(); i++) {
+            if (!(newLst.contains(intList.get(i)))) {
+
+                newLst.add(intList.get(i));
+            }
+        }
+        int x  = intList.size();
+        for (int j = 0; j<x; j++) {
+            if (j<newLst.size()) {
+                intList.set(j, newLst.get(j));
+            } else {
+                intList.remove(newLst.size());
+            }
+
+        }
+    }
+
+    /** Moves all words in wordList that begin with "b" to the front of
+     *  wordList; all "b" words that are moved should appear in the same order
+     *  in the modified arrayList as they did before being moved
+     *
+     *  For example, this method will take a wordList:
+     *  ["apple", "banana", "cherry", "donut", "bagel", "danish", "berry", "baguette", "soda"]
+     *  and modify it to
+     *  ["banana", "bagel", "berry", "baguette", "apple", "cherry", "donut", "danish", "soda"]
+     *
+     *  DOES mutate (modify) elements in wordList
+     *  PRECONDITIONS: - wordList.size() > 0
+     *                 - all strings in wordList have length >= 1
+     *
+     *  @param wordList  arraylist of words
+     */
+    public static void moveBWords(ArrayList<String> wordList)
+    {
+        int numB = 0;
+        for (int i = 0; i<wordList.size(); i++) {
+            if (wordList.get(i).substring(0, 1).equals("b")) {
+                wordList.set(numB, wordList.get(i));
+                numB ++;
+            }
+        }
+    }
+
+
+    /** Returns an arraylist of Integers that contain all mode(s) of the array numList.
+     *  The mode of a list is the value that appears the greatest number of times.
+     *  A list can have one mode, multiple mode, or no mode.
+     *
+     *  If all elements in the list appear the exact same number of times, there is no
+     *  mode and this method should return an empty arraylist.
+     *
+     *  For example, if numList is: [1, 2, 6, 2, 3, 4, 6, 5, 5, 6, 7],
+     *  then numList contains one mode: 6
+     *  and this method returns an arrayList containing 6
+     *
+     *  If numList is: [1, 2, 3, 2, 4, 5, 5, 6],
+     *  then numList contains two modes: 2, 5
+     *  and this method returns an arraylist containing 2 and 5 (in any order)
+     *
+     *  If numList is: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+     *  then numList contains no mode because all values appear the same number of times
+     *  and this method returns an empty arrayList: []
+     *
+     *  If numList is: [2, 2, 2, 3, 3, 3, 4, 4, 4],
+     *  then numList contains three modes: 2, 3, 4
+     *  and this method returns an arrayList containing 2, 3, and 4 (in any order)
+     *
+     *  Does NOT mutate (modify) elements in numList
+     *  PRECONDITIONS: numList.length > 0
+     *
+     *  @param numList  numList of ints
+     */
+    public static ArrayList<Integer> modes(int[] numList)
+    {
+        ArrayList<ArrayList<Integer>> count = new ArrayList<>();
+        for (int i = 0; i<numList.length; i++) {
+
+        }
+    }
 }
 
