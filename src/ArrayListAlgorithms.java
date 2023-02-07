@@ -326,10 +326,61 @@ public class ArrayListAlgorithms
      */
     public static ArrayList<Integer> modes(int[] numList)
     {
-        ArrayList<ArrayList<Integer>> count = new ArrayList<>();
-        for (int i = 0; i<numList.length; i++) {
+
+        ArrayList<int[]> countLst = new ArrayList<int[]>();
+
+        Integer[] numLstcp = new Integer[numList.length];
+
+        for (int b = 0; b<numList.length; b++) {
+            numLstcp[b] = numList[b];
+        }
+
+        int x = numList[0];
+        for (int i = 0; i<numLstcp.length; i++) {
+            if (numLstcp[i] != null) {
+                x = numLstcp[i];
+                int count = 0;
+                for (int j = 0; j< numLstcp.length; j++) {
+                    if (numLstcp[j] != null) {
+                        if (numLstcp[j] == x) {
+                            numLstcp[j] = null;
+                            count++;
+
+                        }
+                    }
+                }
+                numLstcp[i] = null;
+                countLst.add(new int[]{x, count});
+            }
+
 
         }
+
+
+        int[] max = countLst.get(0);
+        for (int j = 0; j<countLst.size(); j++) {
+            if (countLst.get(j)[1]>max[1]) {
+                max = countLst.get(j);
+            }
+        }
+
+
+        int maxLen = 0;
+        ArrayList<Integer> finalLst = new ArrayList<Integer>();
+        for (int a = 0; a<countLst.size(); a++) {
+            //System.out.println("["+countLst.get(a)[0]+", "+countLst.get(a)[1]+"]");
+            if (countLst.get(a)[1]==max[1]) {
+                maxLen++;
+                finalLst.add(countLst.get(a)[0]);
+            }
+        }
+        if (maxLen==countLst.size()) {
+            return new ArrayList<Integer>();
+        }
+        return finalLst;
     }
+
+
+
 }
 
