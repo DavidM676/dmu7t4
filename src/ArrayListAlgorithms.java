@@ -380,7 +380,40 @@ public class ArrayListAlgorithms
         return finalLst;
     }
 
+    public static void sortStudents(ArrayList<Student> studentsToSort) {
+
+        int done = 0;
+        double comp = 0;
+
+        while (done != studentsToSort.size()-1) {
+            done = 0;
+            for (int i = 1; i < studentsToSort.size(); i++) {
+                comp = (studentsToSort.get(i-1).getLastName().compareTo(studentsToSort.get(i).getLastName())); //compare last name
+                if (comp == 0) {
+                    comp = (studentsToSort.get(i-1).getFirstName().compareTo(studentsToSort.get(i).getFirstName())); //compare first name
+                }
+                if (comp == 0) {
+                    comp = (studentsToSort.get(i).getGpa() - studentsToSort.get(i-1).getGpa()); //compare GPA
+                }
+
+
+                if (comp > 0) {
+                    Student old =  studentsToSort.set(i-1, studentsToSort.get(i));
+                    studentsToSort.set(i, old);
+
+                } else {
+                    done += 1;
+                }
+
+            }
+        }
+
+
+    }
+
+
 
 
 }
+
 
